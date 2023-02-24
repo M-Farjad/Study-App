@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "779307743834",
+    "project_id": "oc-quiz-for-fun-53309",
+    "storage_bucket": "oc-quiz-for-fun-53309.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779307743834:android:24c418ca4007c90c8cf663",
+        "android_client_info": {
+          "package_name": "com.example.oc_quiz_for_fun"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "779307743834-946sj9fleiqenumaifp30nr8hl5kt3nc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDniELdObQ1CG-GKe4JyIduh6wDgVKygm8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "779307743834-946sj9fleiqenumaifp30nr8hl5kt3nc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
