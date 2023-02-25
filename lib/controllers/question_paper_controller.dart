@@ -7,6 +7,7 @@ import 'package:study_app/services/firebase_storage_services.dart';
 import 'package:study_app/widgets/dialogs/dialog_widget.dart';
 
 import '../screens/question/question_screen.dart';
+import '../screens/question/question_start_screen.dart';
 
 class QuestionPaperController extends GetxController {
   final allPaperImages = <String>[].obs; //obs for reactive
@@ -41,7 +42,7 @@ class QuestionPaperController extends GetxController {
   void navigateToQuestions(
       {required QuestionPaperModel paper, bool tryAgain = false}) {
 
-        Get.toNamed(QuestionScreen.routeName,
+        Get.toNamed(QuestionStartScreen.routeName,
             arguments: paper, preventDuplicates: false);
     
   }

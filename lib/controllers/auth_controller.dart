@@ -22,12 +22,12 @@ class AuthController extends GetxController {
 
   void initAuth() async {
     await Future.delayed(const Duration(seconds: 2));
-    _auth = FirebaseAuth.instance; // single tone
-    _authStateChanges =
-        _auth.authStateChanges(); // to check user changed or not
-    _authStateChanges.listen(((User? user) {
-      _user.value = user;
-    }));
+    // _auth = FirebaseAuth.instance; // single tone
+    // _authStateChanges =
+    //     _auth.authStateChanges(); // to check user changed or not
+    // _authStateChanges.listen(((User? user) {
+    //   _user.value = user;
+    // }));
 
     navigateToIntroduction();
   }

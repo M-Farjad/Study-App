@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 import 'package:study_app/controllers/auth_controller.dart';
 import 'package:study_app/controllers/theme_controller.dart';
 
+import '../controllers/question_paper/questions_controller.dart';
+
 //implement is used when we have to use some functions only
 class InitialBindings implements Bindings {
   //bindings is from getx package
