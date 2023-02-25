@@ -1,12 +1,18 @@
 import 'dart:async';
+import 'dart:html';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:study_app/models/question_paper_model.dart';
+import 'package:study_app/controllers/auth_controller.dart';
+import 'package:study_app/controllers/question_paper_controller.dart';
+import 'package:study_app/screens/home/home_screen.dart';
 
+import '../../models/question_paper_model.dart';
 import '../../firebase_ref/loading_status.dart';
 import '../../firebase_ref/references.dart';
+import '../../screens/question/result_screen.dart';
 
 class QuestionsController extends GetxController {
   final loadingStatus = LoadingStatus.loading.obs;
@@ -65,7 +71,7 @@ class QuestionsController extends GetxController {
         questionPaper.questions!.isNotEmpty) {
       AllQuestions.assignAll(questionPaper.questions!);
       currentQuestion.value = questionPaper.questions![0];
-      _startTimer(questionPaper.timeSeconds); 
+      _startTimer(questionPaper.timeSeconds);
       print("...startTimer...");
       if (kDebugMode) {
         print(questionPaper.questions![0].question);
@@ -79,6 +85,22 @@ class QuestionsController extends GetxController {
   void SelectedAnswer(String? answer) {
     currentQuestion.value!.selectedAnswer = answer;
     update(['answers_list']);
+  }
+
+  String get completedTest {
+    final answered =
+        AllQuestions.where((element) => element.selectedAnswer != null)
+            .toList()
+            .length;
+    return "$answered out of${AllQuestions.length} answered";
+  }
+
+  void jumpToQuestion(int index, {bool isGoBack = true}) {
+    questionIndex.value = index;
+    currentQuestion.value = AllQuestions[index];
+    if (isGoBack) {
+      Get.back();
+    }
   }
 
   void nextQuestion() {
@@ -96,7 +118,7 @@ class QuestionsController extends GetxController {
   _startTimer(int seconds) {
     const duration = Duration(seconds: 1);
     remainSeconds = seconds;
-    Timer.periodic(
+    _timer = Timer.periodic(
       duration,
       (Timer timer) {
         if (remainSeconds == 0) {
@@ -111,5 +133,23 @@ class QuestionsController extends GetxController {
         }
       },
     );
+  }
+
+  void complete() {
+    _timer!.cancel(); //to avoid memory leakage
+    Get.offAndToNamed(ResultScreen.routeName);
+  }
+
+  void tryAgain() {
+    Get.find<QuestionPaperController>().navigateToQuestions(
+      paper: questionPaperModel,
+      tryAgain: true,
+    );
+  }
+
+  void NavigateToHome() {
+    _timer!.cancel();
+    Get.offNamedUntil(HomeScreen.routeName,
+        (route) => false); //starts from beginning --> saves memory
   }
 }

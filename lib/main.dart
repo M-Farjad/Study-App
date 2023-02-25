@@ -11,8 +11,6 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  // Firebase.initializeApp();
-  // var db = firebase.firestore();
   InitialBindings().dependencies();
   runApp(const MyApp());
 }

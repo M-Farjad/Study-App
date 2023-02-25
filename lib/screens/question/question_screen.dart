@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:study_app/configs/themes/custom_text_styles.dart';
-import 'package:study_app/firebase_ref/loading_status.dart';
-import 'package:study_app/widgets/common/question_screenholder.dart';
-import 'package:study_app/widgets/content_area.dart';
+import 'package:get/get.dart';
+import 'package:study_app/screens/question/test_overview_screen.dart';
+import 'package:study_app/widgets/questions/countdown_timer.dart';
+
+import '../../configs/themes/custom_text_styles.dart';
+import '../../firebase_ref/loading_status.dart';
+import '../../widgets/common/question_screenholder.dart';
 import '../../configs/themes/UI_parameters.dart';
+import '../../widgets/content_area.dart';
 import '../../configs/themes/app_colors..dart';
 import '../../controllers/question_paper/questions_controller.dart';
 import '../../widgets/common/background_decoration.dart';
-import 'package:get/get.dart';
-
 import '../../widgets/common/custom_appbar.dart';
 import '../../widgets/common/main_button.dart';
 import '../../widgets/questions/answer_card.dart';
@@ -27,7 +29,10 @@ class QuestionScreen extends GetView<QuestionsController> {
                 side: BorderSide(color: onSurfaceTextColor, width: 2),
               ),
             ),
-            child: Obx(() => Text('${controller.time.value}')),
+            child: Obx(() => CountdownTimer(
+                  time: controller.time.value,
+                  color: onSurfaceTextColor,
+                )),
           ),
           showActionIcon: true,
           titleWidget: Obx(
@@ -93,6 +98,7 @@ class QuestionScreen extends GetView<QuestionsController> {
                   ),
                 ),
               ColoredBox(
+                color: Theme.of(context).scaffoldBackgroundColor,
                 child: Padding(
                   padding: UIParameters.mobileScreenPadding,
                   child: Row(
@@ -104,7 +110,9 @@ class QuestionScreen extends GetView<QuestionsController> {
                           height: 55,
                           child: MainButton(
                             onTap: () {
-                              controller.prevQuestion();
+                              controller.isLastQuestion
+                                  ? Get.toNamed(TestOverviewScreen.routeName)
+                                  : controller.prevQuestion();
                             },
                             child: Icon(
                               Icons.arrow_back_ios_new,
@@ -133,7 +141,6 @@ class QuestionScreen extends GetView<QuestionsController> {
                     ],
                   ),
                 ),
-                color: Theme.of(context).scaffoldBackgroundColor,
               )
             ],
           ),

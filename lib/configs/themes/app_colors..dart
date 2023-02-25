@@ -4,7 +4,10 @@ import 'app_dark_theme.dart';
 import 'app_light_theme.dart';
 import 'package:get/get.dart';
 
-const onSurfaceTextColor = Colors.white;
+const Color onSurfaceTextColor = Colors.white;
+const Color correctAnswerColor = Color(0xFF3accb);
+const Color wrongAnswerColor = Color(0xFFf85187);
+const Color notAnsweredColor = Color(0xFF2a3c65);
 
 const mainGradientLight = LinearGradient(
     begin: Alignment.topLeft,
