@@ -37,9 +37,9 @@ class AppRoutes {
           name: QuestionScreen.routeName,
           page: () => QuestionScreen(),
           binding: BindingsBuilder(() {
-            // retrieve the QuestionsController instance from QuestionStartScreen
+             final questionsController = Get.find<QuestionsController>();
             // make the instance available to TestOverviewScreen
-            Get.put(QuestionsController());
+            Get.put(questionsController);
           }),
         ),
         GetPage(
