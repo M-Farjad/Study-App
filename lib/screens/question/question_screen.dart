@@ -5,6 +5,7 @@ import 'package:study_app/widgets/questions/countdown_timer.dart';
 
 import '../../configs/themes/custom_text_styles.dart';
 import '../../firebase_ref/loading_status.dart';
+import '../../models/question_paper_model.dart';
 import '../../widgets/common/question_screenholder.dart';
 import '../../configs/themes/UI_parameters.dart';
 import '../../widgets/content_area.dart';
@@ -20,6 +21,8 @@ class QuestionScreen extends GetView<QuestionsController> {
   static const String routeName = "/questionsscreen";
   @override
   Widget build(BuildContext context) {
+  final QuestionPaperModel paper = Get.arguments as QuestionPaperModel;
+  print('hi ${paper.title}');
     return Scaffold(
       appBar: CustomAppBar(
           leading: Container(
@@ -130,7 +133,7 @@ class QuestionScreen extends GetView<QuestionsController> {
                             child: MainButton(
                               onTap: () {
                                 controller.isLastQuestion
-                                    ? Container()
+                                    ? controller.complete()
                                     : controller.nextQuestion();
                               },
                               title: controller.isLastQuestion

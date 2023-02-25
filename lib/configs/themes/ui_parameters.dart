@@ -10,6 +10,7 @@ double get cardBorderRadius => _cardBorderRadius;
 class UIParameters {
   static bool isDarkMode() {
     // return Theme.of(context).brightness == Brightness.dark;
+    // change form here
     return Get.isDarkMode ? true : false;
   }
 

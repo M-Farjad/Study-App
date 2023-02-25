@@ -40,21 +40,9 @@ class QuestionPaperController extends GetxController {
 
   void navigateToQuestions(
       {required QuestionPaperModel paper, bool tryAgain = false}) {
-    AuthController _authController = Get.find();
-    if (_authController.isLoggedIn()) {
-      if (tryAgain) {
-        //
-        Get.back(); //if try again remove the ui fromthe  stack
-        //get.of named
+
         Get.toNamed(QuestionScreen.routeName,
             arguments: paper, preventDuplicates: false);
-      } else {
-        Get.toNamed(QuestionScreen.routeName, arguments: paper);
-      }
-    } else {
-      print('title is ${paper.title}');
-      _authController.showLoginAlertDialogue();
-    }
-    Get.toNamed(QuestionScreen.routeName, arguments: paper);
+    
   }
 }

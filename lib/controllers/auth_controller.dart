@@ -82,7 +82,7 @@ class AuthController extends GetxController {
   }
 
   void navigateToIntroduction() {
-    Get.offAllNamed('/questionsscreen'); //TODO
+    Get.offAllNamed(HomeScreen.routeName); //TODO
   }
 
   NavigateToHomePage() {
